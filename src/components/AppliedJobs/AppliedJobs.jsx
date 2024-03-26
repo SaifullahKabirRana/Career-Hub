@@ -7,6 +7,21 @@ const AppliedJobs = () => {
     const jobs = useLoaderData();
 
     const [appliedJobs, setAppliedJobs] = useState([]);
+    const [displayJobs, setDisplayJobs] = useState([]);
+
+    const handleJobsFilter = filter => {
+        if (filter === 'all') {
+            setDisplayJobs(appliedJobs);
+        }
+        else if (filter === 'remote') {
+            const remoteJobs = appliedJobs.filter(job => job.remote_or_onsite === 'Remote');
+            setDisplayJobs(remoteJobs);
+        }
+        else if (filter == 'onsite') {
+            const onsiteJobs = appliedJobs.filter(job => job.remote_or_onsite === 'Onsite');
+            setDisplayJobs(onsiteJobs);
+        }
+    }
 
     useEffect(() => {
         const storedJobsIds = getStoredJobApplication();
@@ -21,7 +36,8 @@ const AppliedJobs = () => {
                     jobsApplied.push(job);
                 }
             }
-            setAppliedJobs(jobsApplied)
+            setAppliedJobs(jobsApplied);
+            setDisplayJobs(jobsApplied);
 
             // console.log(jobs, storedJobsIds, jobsApplied)
         }
@@ -37,9 +53,9 @@ const AppliedJobs = () => {
                         <details open>
                             <summary >Filter By</summary>
                             <ul>
-                                <li><a>All</a></li>
-                                <li><a>Remote</a></li>
-                                <li><a>OnSite</a></li>
+                                <li onClick={()=> handleJobsFilter('all')}><a>All</a></li>
+                                <li onClick={() => handleJobsFilter('remote')}><a>Remote</a></li>
+                                <li onClick={() => handleJobsFilter('onsite')}><a>OnSite</a></li>
                             </ul>
                         </details>
                     </li>
@@ -48,7 +64,7 @@ const AppliedJobs = () => {
 
             <div className="">
                 {
-                    appliedJobs.map(appliedJob => <AppliedJob key={appliedJob.id} appliedJob={appliedJob}></AppliedJob>)
+                    displayJobs.map(appliedJob => <AppliedJob key={appliedJob.id} appliedJob={appliedJob}></AppliedJob>)
                 }
             </div>
         </div>
