@@ -47,19 +47,15 @@ const AppliedJobs = () => {
     return (
         <div>
             <h2>Jobs i applied: {appliedJobs.length}</h2>
-            <div className="text-center ">
-                <ul className="menu lg:menu-horizontal rounded-box bg-green-400 mb-8">
-                    <li>
-                        <details open>
-                            <summary >Filter By</summary>
-                            <ul>
-                                <li onClick={()=> handleJobsFilter('all')}><a>All</a></li>
-                                <li onClick={() => handleJobsFilter('remote')}><a>Remote</a></li>
-                                <li onClick={() => handleJobsFilter('onsite')}><a>OnSite</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                </ul>
+            <div className="text-center mb-8 ">
+                <div className="dropdown ">
+                    <div tabIndex={0} role="button" className="btn m-1 bg-gradient-to-r from-[#7E90FE] to-[#9873FF] text-white text-xl font-semibold">Filter By</div>
+                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 bg-gradient-to-r from-[#cbd2ff] to-[#dbd0ff]  font-medium">
+                        <li onClick={() => handleJobsFilter('all')}><a>All</a></li>
+                        <li onClick={() => handleJobsFilter('remote')}><a>Remote</a></li>
+                        <li onClick={() => handleJobsFilter('onsite')}><a>OnSite</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div className="">
