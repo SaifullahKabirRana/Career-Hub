@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
     const links = <>
-        <li><NavLink to='/'>Home</NavLink></li>       
+        <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/jobs'>Jobs</NavLink></li>
         <li><NavLink to='/applied'>Applied Jobs</NavLink></li>
         <li><NavLink to='/statistics'>Statistics</NavLink></li>
@@ -30,6 +30,7 @@ const Header = () => {
                 <div className="navbar-end">
                     <a className="btn bg-gradient-to-r from-[#7E90FE] to-[#9873FF] text-white text-xl font-semibold">Apply Now</a>
                 </div>
+                
             </div>
         </div>
     );
